@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LibraryView = () => {
+const LibraryView: React.FC = () => {
   return (
     <div>
       Hello World

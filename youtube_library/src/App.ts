@@ -1,7 +1,7 @@
 import React from 'react';
 import LibraryView from './view/LibraryView';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div>
       <LibraryView />

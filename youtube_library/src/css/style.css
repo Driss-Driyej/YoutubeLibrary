@@ -9,3 +9,10 @@ body {
   height: 100vh;
 }
 
+.library-view-container {
+  margin-top: 50px;
+}
+
+.library-view-item {
+  margin-bottom: 20px;
+}

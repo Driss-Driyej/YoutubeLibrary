@@ -1,26 +1,25 @@
-import johnVideosData from '../json/John';
-import markVideosData from '../json/Mark';
+import johnVideosData from '../json/John.json';
+import markVideosData from '../json/Mark.json';
 
-
-interface LibraryModelProps {
-  username: string;
+interface libraryModelProps {
+    username: string;
 }
 
-const libraryModel = (props: LibraryModelProps) => {
-  const { username } = props;
-  const johnVideos = johnVideosData.videos;
-  const markVideos = markVideosData.videos;
+const libraryModel = (props: libraryModelProps) => {
+    const { username } = props;
+    const johnVideos = johnVideosData.videos;
+    const markVideos = markVideosData.videos;
 
-  if (username === "john") {
-    return johnVideos
-  } 
+    if (username === "john") {
+        return johnVideos;
+    } 
 
-  if (username === "mark") {
-    return markVideos;
-  }
+    if (username === "mark") {
+        return markVideos;
+    }
 
-  // Si le username ne correspond ni à "john" ni à "mark" on retourne un tableau vide
-  return [];
+    // Si le username ne correspond ni à "john" ni à "mark" on retourne un tableau vide
+    return [];
 }
 
 export default libraryModel;

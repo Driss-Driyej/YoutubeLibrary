@@ -1,6 +1,7 @@
 import React from 'react';
-import MyVideo from './MyVideo';
+import MyVideoView from './MyVideoView';
 import libraryModel from '../model/libraryModel';
+import '../css/style.css'; // Importation du fichier CSS
 
 interface LibraryViewProps {
   username: string;
@@ -8,26 +9,28 @@ interface LibraryViewProps {
 
 class LibraryView extends React.Component<LibraryViewProps> {
   render() {
-    const {username} = this.props;
-    const userVideos = libraryModel({username});
+    const { username } = this.props;
+    const userVideos = libraryModel({ username });
+
     return (
-    <div className="Library">
+      <div className="Library">
 
-    <h1>Library {username}</h1>
-    <button className="DisplayForm">[+]</button>
-{/*
+        <h1>Library {username}</h1>
 
-        <ul>
-          {userVideos.videos.map((video, index) => (
-            <li key={index}>{video.title}</li>
+        <button className="DisplayForm">[+]</button>
+        <div className="library-view-container">
+
+          {userVideos.map((video, index) => (
+            <div className="library-view-item">
+              <MyVideoView title={video.title} />
+            </div>
           ))}
-        </ul>
-      */}
 
-    </div>
-      )
+        </div>
+
+      </div>
+    );
   }
-
 }
 
 export default LibraryView;

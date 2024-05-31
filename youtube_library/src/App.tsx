@@ -13,7 +13,7 @@ class App extends React.Component<AppProps> {
     return (
       <div>
         <LibraryView username={username} />
-        <MainPanelView />
+        <MainPanelView username={username}/>
       </div>
     );
   }

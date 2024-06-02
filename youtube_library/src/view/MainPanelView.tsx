@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchFormView from './SearchFormView';
 import VideoPlaybackView from './VideoPlaybackView';
-import appModel from '../model/appModel';
+import MainPanelController from '../controller/MainPanelController';
 
 interface MainPanelViewProps {
   username: string;
@@ -10,8 +10,8 @@ interface MainPanelViewProps {
 class MainPanelView extends React.Component<MainPanelViewProps> {
     render() {
         const { username } = this.props;
-        const userVideos = appModel({username});
-        const firstVideoId = userVideos.length > 0 ? userVideos[0].id : "";
+        const userVideos = MainPanelController.getUserVideos(username);
+        const firstVideoId = MainPanelController.getFirstVideoId(username);
 
         return (
             <>

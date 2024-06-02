@@ -1,7 +1,7 @@
 import React from 'react';
 import MyVideoView from './MyVideoView';
-import appModel from '../model/appModel';
-import '../css/style.css'; // Importation du fichier CSS
+import LibraryController from '../controller/LibraryController';
+import '../css/style.css';
 
 interface LibraryViewProps {
   username: string;
@@ -10,8 +10,7 @@ interface LibraryViewProps {
 class LibraryView extends React.Component<LibraryViewProps> {
   render() {
     const { username } = this.props;
-    const userVideos = appModel({ username });
-
+    const userVideos = LibraryController.getUserVideos(username);
     return (
       <div className="Library">
 

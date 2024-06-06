@@ -5,7 +5,9 @@ interface appModelProps {
     username: string;
 }
 
-const appModel = (props: appModelProps) => {
+class AppModel {
+// fonction qui permet de récupérer les vidéos (avec leurs titre et leurs id) qui sont dans la librarie de l'utilisateur
+static getUserVideos = (props: appModelProps) => {
     const { username } = props;
     const johnVideos = johnVideosData.videos;
     const markVideos = markVideosData.videos;
@@ -22,4 +24,5 @@ const appModel = (props: appModelProps) => {
     return [];
 }
 
-export default appModel;
+}
+export default AppModel;

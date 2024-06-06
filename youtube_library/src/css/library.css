@@ -1,0 +1,34 @@
+.library-container {
+  width: 30%;  /* Augmenter la largeur pour un effet plus grand */
+  background-color: dimgray;
+  padding: 20px;  /* Augmenter le padding pour plus d'espace intérieur */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.library-header {
+  font-size: 1.8em;  /* Augmenter la taille de la police */
+  margin-bottom: 20px;
+}
+
+.display-form {
+  margin-bottom: 20px;
+  padding: 10px 20px;  /* Augmenter le padding pour un bouton plus grand */
+  font-size: 1.2em;  /* Augmenter la taille de la police */
+}
+
+.library-view-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;  /* Augmenter l'espacement entre les items */
+}
+
+.library-view-item {
+  background-color: white;
+  padding: 20px;  /* Augmenter le padding pour des items plus grands */
+  border-radius: 10px;  /* Garder les coins arrondis mais plus subtils */
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Ajouter une ombre pour un effet de profondeur */
+  font-size: 1.2em;  /* Augmenter la taille de la police */
+}

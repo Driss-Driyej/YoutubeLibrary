@@ -1,5 +1,6 @@
 import React from 'react';
 import { checkVideoExists } from '../controller/videoPlaybackController';
+import '../css/videoPlayback.css';
 
 interface VideoPlaybackViewProps {
   videoId: string;
@@ -31,15 +32,16 @@ class VideoPlaybackView extends React.Component<VideoPlaybackViewProps> {
     return (
       <div>
         <div>
-          <iframe
-            id="videoIframe"
-            width="560"
-            height="315"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="YouTube video"
-          ></iframe>
+
+          <h1 className="video-title" >Titre de la video</h1>
+
+        <iframe
+          id="videoIframe"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title="YouTube video"
+        ></iframe>
         </div>
       </div>
     );

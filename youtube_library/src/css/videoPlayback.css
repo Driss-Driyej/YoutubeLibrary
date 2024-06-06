@@ -1,0 +1,8 @@
+#videoIframe {
+  width: 1000px;  /* Largeur plus grande */
+  height: 563px;  /* Hauteur plus grande (16:9 ratio) */
+  border: 0;
+  border-radius: 10px;  /* Coins arrondis pour le lecteur vidéo */
+}
+
+

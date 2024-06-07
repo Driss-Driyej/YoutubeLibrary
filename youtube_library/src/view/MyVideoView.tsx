@@ -1,17 +1,19 @@
 import React from 'react';
 
-interface MyVideoProps {
-    title: string;
+interface MyVideoViewProps {
+  title: string;
 }
 
-class MyVideoView extends React.Component<MyVideoProps> {
-    render() {
-        const { title } = this.props;
-
-        return (
-            <button>[x] {title}</button>
-        );
-    }
+class MyVideoView extends React.Component<MyVideoViewProps> {
+  render() {
+    const { title } = this.props;
+    return (
+      <div>
+        <button>X</button>
+        <button>{title}</button>
+      </div>
+    );
+  }
 }
 
 export default MyVideoView;

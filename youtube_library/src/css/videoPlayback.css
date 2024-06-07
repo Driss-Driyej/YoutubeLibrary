@@ -1,8 +1,11 @@
-#videoIframe {
-  width: 1000px;  /* Largeur plus grande */
-  height: 563px;  /* Hauteur plus grande (16:9 ratio) */
+#video-iframe {
+  width: 900px;
+  height: 506px;
   border: 0;
-  border-radius: 10px;  /* Coins arrondis pour le lecteur vidéo */
+  border-radius: 10px;
 }
 
-
+.video-title {
+  font-size: 24px;
+  margin-bottom: 15px;
+}

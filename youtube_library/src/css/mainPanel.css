@@ -7,8 +7,7 @@
   flex-direction: column;
 }
 
-
-.video-playback {
+.main-panel-view {
   background-color: white;
   flex-grow: 1;
   display: flex;

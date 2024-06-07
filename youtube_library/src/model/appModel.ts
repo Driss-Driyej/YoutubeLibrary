@@ -1,6 +1,7 @@
 import johnVideosData from '../json/John.json';
 import markVideosData from '../json/Mark.json';
 
+// type du nom de l'utilisateur
 interface appModelProps {
     username: string;
 }

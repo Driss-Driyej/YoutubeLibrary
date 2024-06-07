@@ -13,8 +13,13 @@ const Main = () => {
 
     return (
         <div>
-            {/* Charger l'application avec le nom d'utilisateur */}
-            {username && <App username={username} />}
+            {/* Affiche un message si il n'y a pas d'utilisateur connecté*/}
+            {!username ? (
+                <h1>Veuillez vous connecter</h1>
+            ) : (
+                /* Charge l'application avec les données de l'utilisateur connecté */
+                <App username={username} />
+            )}
         </div>
     );
 }

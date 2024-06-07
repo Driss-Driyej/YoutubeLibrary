@@ -1,48 +1,59 @@
 import React from 'react';
-import { checkVideoExists } from '../controller/videoPlaybackController';
+import videoPlaybackModel from '../model/videoPlaybackModel';
 import '../css/videoPlayback.css';
 
+// type de l'id de la video à visionner
 interface VideoPlaybackViewProps {
   videoId: string;
+  videoTitle: string;
 }
 
-class VideoPlaybackView extends React.Component<VideoPlaybackViewProps> {
+interface VideoPlaybackViewState {
+  videoExists: boolean;
+}
+
+class VideoPlaybackView extends React.Component<VideoPlaybackViewProps, VideoPlaybackViewState> {
+  constructor(props: VideoPlaybackViewProps) {
+    super(props);
+    this.state = {
+      videoExists: false,
+    };
+  }
+
   componentDidMount() {
-    this.fetchVideo();
+    this.updateVideoExists();
   }
 
   componentDidUpdate(prevProps: VideoPlaybackViewProps) {
     if (this.props.videoId !== prevProps.videoId) {
-      this.fetchVideo();
+      this.updateVideoExists();
     }
   }
 
-  fetchVideo = async () => {
-    const { videoId } = this.props;
-    const exists = await checkVideoExists(videoId);
-    if (exists) {
-      const videoIframe = document.getElementById('videoIframe') as HTMLIFrameElement;
-      videoIframe.src = `https://www.youtube.com/embed/${videoId}`;
-    } else {
-      alert('Video not found');
-    }
+  // utilise checkVideoExists pour donner sa valeur renvoyé (true : vidéo existe, false : vidéo n'existe pas) à la variable videoExists
+  updateVideoExists = async () => {
+    const exists = await videoPlaybackModel.checkVideoExists(this.props.videoId);
+    this.setState({ videoExists: exists });
   };
 
   render() {
+    const { videoExists } = this.state;
     return (
       <div>
-        <div>
 
-          <h1 className="video-title" >Titre de la video</h1>
-
-        <iframe
-          id="videoIframe"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          title="YouTube video"
-        ></iframe>
-        </div>
+        {videoExists && <h1 className="video-title">{this.props.videoTitle}</h1>}
+        {videoExists ? (
+          <iframe
+            id="video-iframe"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="YouTube video"
+            src={`https://www.youtube.com/embed/${this.props.videoId}`}
+          ></iframe>
+        ) : (
+          <p>Vidéo non trouvée</p>
+        )}
       </div>
     );
   }

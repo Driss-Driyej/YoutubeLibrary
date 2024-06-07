@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client'; // Importer createRoot depuis react-dom/client
 import App from './App';
 import './css/style.css';
 
@@ -13,7 +13,7 @@ const Main = () => {
 
     return (
         <div>
-            {/* Affiche un message si il n'y a pas d'utilisateur connecté*/}
+            {/* Affiche un message si il n'y a pas d'utilisateur connecté */}
             {!username ? (
                 <h1>Veuillez vous connecter</h1>
             ) : (
@@ -24,7 +24,12 @@ const Main = () => {
     );
 }
 
-ReactDOM.render(
-    <Main />,
-    document.getElementById('root')
-);
+const container = document.getElementById('root');
+if (container) {
+    const root = ReactDOM.createRoot(container);
+    root.render(
+        <React.StrictMode>
+            <Main />
+        </React.StrictMode>
+    );
+}

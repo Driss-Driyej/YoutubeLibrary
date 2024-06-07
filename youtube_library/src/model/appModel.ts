@@ -7,17 +7,19 @@ interface appModelProps {
 }
 
 class AppModel {
-// fonction qui permet de récupérer les vidéos (avec leurs titre et leurs id) qui sont dans la librarie de l'utilisateur
+// fonction qui permet de récupérer les vidéos (avec leurs titre et leurs id) qui sont dans la librairie de l'utilisateur
 static getUserVideos = (props: appModelProps) => {
     const { username } = props;
-    const johnVideos = johnVideosData.videos;
-    const markVideos = markVideosData.videos;
+    const johnVideos = johnVideosData.videos; // contient les videos de john
+    const markVideos = markVideosData.videos; // contient les videos de mark
 
     if (username === "john") {
+        // Si c'est john qui est connecté, alors on retourne ses videos
         return johnVideos;
     } 
 
     if (username === "mark") {
+        // Si c'est mark qui est connecté, alors on retourne ses videos
         return markVideos;
     }
 

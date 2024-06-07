@@ -1,42 +1,37 @@
 import React from 'react';
 import SearchFormView from './SearchFormView';
 import VideoPlaybackView from './VideoPlaybackView';
-import MainPanelModel from '../model/MainPanelModel';
 import '../css/mainPanel.css';
 
-// types des éléments du tableaux vidéos de la base de données
-interface videos {
+// types des éléments du tableaux vidéos (userVideos) de la base de données
+interface video {
     title: string;
     id: string;
 }
 
-// type du nom et des videos de l'utilisateur
 interface MainPanelViewProps {
-  username: string;
-  userVideos: videos[];
-  showSearchForm: boolean;
+  showSearchForm: boolean; // type de la variable qui permet (ou non) d'afficher le formulaire de recherche
+  videoSelected: video | null; // type de la variable qui contient la vidéo selectionné par l'utilisateur
 }
 
+// Composant qui affiche l'élément de droite de la vue 
 class MainPanelView extends React.Component<MainPanelViewProps> {
     render() {
-        const { username, userVideos, showSearchForm } = this.props;
-        // première vidéo qui apparaît dans la librarie de l'utilisateur
-        const getFirstVideo = MainPanelModel.getFirstVideo(userVideos);
+        const {showSearchForm, videoSelected } = this.props;
 
         return (
             <div className="main-panel-container">
                 {showSearchForm ? (
+                    // Si la variable showSearchForm est à true, alors on affiche le formulaire de recherche
                     <div className="main-panel-view">
                         <SearchFormView />
                     </div>
                 ) : (
+                    // Si la variable showSearchForm est à false, alors on affiche la vidéo selectionné par l'utilisateur
                     <div className="main-panel-view">
-                        {getFirstVideo ? (
-                            // Affiche la vidéo que l'utilisateur veut visionner si getFirstVideo n'est pas null
-                            <VideoPlaybackView videoId={getFirstVideo.id} videoTitle={getFirstVideo.title}/>
-                        ) : (
-                            // Affiche un message d'erreur si getFirstVideo est null
-                            <div>Aucune vidéo trouvée</div>
+                        {videoSelected && (
+                            // Si la variable videoSelected n'est pas null, alors on affiche la vidéo que l'utilisateur veut visionner en donnant l'id et le titre de la vidéo selectionné en props 
+                            <VideoPlaybackView videoId={videoSelected.id} videoTitle={videoSelected.title}/>
                         )}
                     </div>
                 )}

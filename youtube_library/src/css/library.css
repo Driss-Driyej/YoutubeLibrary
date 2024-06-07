@@ -32,3 +32,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Ajouter une ombre pour un effet de profondeur */
   font-size: 1.2em;  /* Augmenter la taille de la police */
 }
+
+.library-item {
+  list-style-type: none;
+  margin-top: 20px;
+}

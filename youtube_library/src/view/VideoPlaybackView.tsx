@@ -1,5 +1,5 @@
 import React from 'react';
-import videoPlaybackModel from '../model/videoPlaybackModel';
+import YoutubeApiModel from '../model/YoutubeApiModel';
 import '../css/videoPlayback.css';
 
 interface VideoPlaybackViewProps {
@@ -33,7 +33,7 @@ class VideoPlaybackView extends React.Component<VideoPlaybackViewProps, VideoPla
 
   // utilise la méthode checkVideoExists du model pour donner sa valeur de retour (true : vidéo existe, false : vidéo n'existe pas) à la variable videoExists
   updateVideoExists = async () => {
-    const exists = await videoPlaybackModel.checkVideoExists(this.props.videoId);
+    const exists = await YoutubeApiModel.checkVideoExists(this.props.videoId);
     this.setState({ videoExists: exists });
   };
 

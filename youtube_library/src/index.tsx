@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'; // Importer createRoot depuis react-dom/client
 import App from './App';
-import './css/style.css';
+//import './css/style.css';
 
 const getUserNameFromURL = (): string | null => {
     const account_name = new URLSearchParams(window.location.search);

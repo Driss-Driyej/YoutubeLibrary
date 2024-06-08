@@ -1,7 +1,7 @@
 import React from 'react';
 import LibraryView from './view/LibraryView';
 import MainPanelView from './view/MainPanelView';
-import AppModel from './model/AppModel';
+import UserModel from './model/UserModel';
 import './css/App.css';
 
 // types des éléments du tableau vidéos selectionné (videoSelected)
@@ -45,7 +45,7 @@ class App extends React.Component<AppProps, AppState> {
     const { showSearchForm, videoSelected } = this.state;
     const { username } = this.props;
     // Contient les vidéos que l'utilisateur a dans sa librairie
-    const userVideos = AppModel.getUserVideos({ username });
+    const userVideos = UserModel.getUserVideos({ username });
 
     return (
       <div className="app-container">

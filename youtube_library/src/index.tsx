@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'; // Importer createRoot depuis react-dom/client
 import App from './App';
-//import './css/style.css';
 
 const getUserNameFromURL = (): string | null => {
     const account_name = new URLSearchParams(window.location.search);
@@ -24,9 +23,12 @@ const Main = () => {
     );
 }
 
-const container = document.getElementById('root');
+const container = document.getElementById('root'); // Sélectionne l'élément DOM avec l'ID 'root'
+// Vérifie si l'élément 'root' existe
 if (container) {
+    // Si root existe, sa crée une racine React
     const root = ReactDOM.createRoot(container);
+    // Rend l'application React à l'intérieur de l'élément 'root'
     root.render(
         <React.StrictMode>
             <Main />

@@ -23,12 +23,12 @@ class MainPanelView extends React.Component<MainPanelViewProps> {
             <div className="main-panel-container">
                 {showSearchForm ? (
                     // Si la variable showSearchForm est à true, alors on affiche le formulaire de recherche
-                    <div className="main-panel-view">
+                    <div className="main-panel-search-view">
                         <SearchFormView />
                     </div>
                 ) : (
                     // Si la variable showSearchForm est à false, alors on affiche la vidéo selectionné par l'utilisateur
-                    <div className="main-panel-view">
+                    <div className="main-panel-video">
                         {videoSelected && (
                             // Si la variable videoSelected n'est pas null, alors on affiche la vidéo que l'utilisateur veut visionner en donnant l'id et le titre de la vidéo selectionné en props 
                             <VideoPlaybackView videoId={videoSelected.id} videoTitle={videoSelected.title}/>

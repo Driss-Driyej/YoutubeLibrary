@@ -1,10 +1,14 @@
 .library-container {
   width: 30%;
   background-color: dimgray;
-  padding: 20px;
+  padding: 15px;
+  margin: 30px 10px;
+  align-items: center;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
 }
 
 .library-header {
@@ -14,7 +18,7 @@
 
 .display-form {
   margin-bottom: 20px;
-  padding: 10px 20px;
+  padding: 10px 210px;
   font-size: 1.2em;
 }
 
@@ -36,4 +40,40 @@
 .library-item {
   list-style-type: none;
   margin-top: 20px;
+}
+
+.my-video-container {
+  display: flex;
+  align-items: center;
+}
+
+.my-video-container {
+  display: flex;
+}
+
+.my-video-button-supp, .my-video-button {
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.my-video-button-supp {
+  width: 30px;
+  height: 80px;
+  padding: 30px 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.my-video-button {
+  width: 400px;
+  height: 80px;
+  padding: 30px 10px;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 1;
+}
+
+.my-video-button-supp:hover, .my-video-button:hover {
+  background-color: lightgray;
 }

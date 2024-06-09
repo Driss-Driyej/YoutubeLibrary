@@ -60,5 +60,5 @@ class App extends React.Component<AppProps, AppState> {
 
 export default App;
 
-/*1 - Tu dois encore gérer l'état pour : les résultats de cette recherche, bibliothèsque de vidéo(en gros si j'enlève une vidéo de la bd de l'utilisateur, pas besoins de rafraîchir pour qu'elle n'apparaisse plus ).*/
-/*2 - Gère l'évènement de la barre de recherche et des boutons supprimer et ajouter un video*/
+/*1 - Gère l'évènement de la barre de recherche et des boutons supprimer et ajouter un video*/
+/*2 - Bibliothèsque de vidéo(en gros si j'enlève une vidéo de la bd de l'utilisateur, pas besoins de rafraîchir pour qu'elle n'apparaisse plus ).*/

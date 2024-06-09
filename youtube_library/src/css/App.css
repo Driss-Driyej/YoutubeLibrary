@@ -1,4 +1,5 @@
 .app-container {
+  background-color: whitesmoke;
   display: flex;
   height: 100vh;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/library.css';
 
 // types des éléments du tableau video donné en props
 interface video {
@@ -17,11 +18,11 @@ class MyVideoView extends React.Component<MyVideoViewProps> {
     const { video } = this.props;
 
     return (
-      <div>
+      <div className="my-video-container">
         {/*Bouton qui permet de supprimer la vidéo*/}
-        <button>X</button>
+        <button className="my-video-button-supp">X</button>
         {/*Bonton qui permet d'afficher la vidéo dans la partie droite de l'application à l'aide de la méthode displayVideo(event, video) de la class App*/}
-        <button onClick={(event) => this.props.libraryItemOnClick(event, video)}>{video.title}</button>
+        <button className="my-video-button" onClick={(event) => this.props.libraryItemOnClick(event, video)}>{video.title}</button>
       </div>
     );
   }

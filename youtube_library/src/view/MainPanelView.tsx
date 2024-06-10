@@ -14,6 +14,7 @@ interface MainPanelViewProps {
   onAddVideo: (video: Video) => void;  
 }
 
+// Composant qui affiche l'élément de droite de la vue 
 class MainPanelView extends React.Component<MainPanelViewProps> {
   render() {
     const { showSearchForm, videoSelected, onAddVideo } = this.props;
@@ -27,6 +28,7 @@ class MainPanelView extends React.Component<MainPanelViewProps> {
         ) : (
           <div className="main-panel-video">
             {videoSelected && (
+              //Si une vidéo est selectionné on affiche la vidéo que l'utilisateur a selectionné
               <VideoPlaybackView videoId={videoSelected.id} videoTitle={videoSelected.title} />
             )}
           </div>

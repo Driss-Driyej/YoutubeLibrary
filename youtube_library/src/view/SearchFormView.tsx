@@ -19,6 +19,7 @@ interface SearchFormViewState {
   numResults: number | string;
 }
 
+// Composant qui affiche le formulaire de recherche
 class SearchFormView extends React.Component<SearchFormViewProps, SearchFormViewState> {
   constructor(props: SearchFormViewProps) {
     super(props);
@@ -32,7 +33,7 @@ class SearchFormView extends React.Component<SearchFormViewProps, SearchFormView
   handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ value: event.target.value });
   }
-
+  // gère le nombre de résultat [1-5]
   handleNumResultsChange(event: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ numResults: event.target.value });
   }

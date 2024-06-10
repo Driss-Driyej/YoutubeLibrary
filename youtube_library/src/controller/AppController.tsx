@@ -14,6 +14,7 @@ class AppController {
     this.setUserVideos = setUserVideos;
   }
 
+  // Actualise la liste des vidéos
   async fetchUserVideos() {
     this.setLoading(true);
     await new Promise(resolve => setTimeout(resolve, 80));
@@ -25,6 +26,7 @@ class AppController {
     this.setLoading(false);
   }
 
+  // Gere l'ajout d'une vidéo
   async handleVideoAdd(video: Video) {
     this.setLoading(true);
     const response = await fetch(`http://localhost:3001/api/library/${this.username}/videos`, {
@@ -41,6 +43,7 @@ class AppController {
     this.setLoading(false);
   }
 
+  // Gere la suppression d'une video
   async handleVideoDelete(videoId: string) {
     this.setLoading(true);
 
@@ -49,7 +52,7 @@ class AppController {
     });
 
     if (response.ok) {
-      await this.fetchUserVideos(); // Rafraîchir la liste des vidéos après la suppression
+      await this.fetchUserVideos();
     }
 
     this.setLoading(false);

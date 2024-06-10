@@ -1,7 +1,6 @@
 import React from 'react';
 import LibraryView from './view/LibraryView';
 import MainPanelView from './view/MainPanelView';
-import UserModel from './model/UserModel';
 import './css/App.css';
 
 // types des éléments du tableau vidéos selectionné (videoSelected)
@@ -44,13 +43,11 @@ class App extends React.Component<AppProps, AppState> {
   render() {
     const { showSearchForm, videoSelected } = this.state;
     const { username } = this.props;
-    // Contient les vidéos que l'utilisateur a dans sa librairie
-    const userVideos = UserModel.getUserVideos({ username });
 
     return (
       <div className="app-container">
         {/*Composant gauche de l'application. Il affiche : le nom de la librairie, le bouton d'affichage du formulaire, et les vidéos que l'utilisateur a dans sa librairie*/}
-        <LibraryView username={username} userVideos={userVideos} displayFormOnClick={this.displaySearchForm} libraryItemOnClick={this.displayVideo}/>
+        <LibraryView username={username} displayFormOnClick={this.displaySearchForm} libraryItemOnClick={this.displayVideo}/>
         {/*Composant droit  de l'application. Il affiche (selon la valeur de la variable showSearchForm) : le formulaire de recherche ou la vidéo que l'utilisateur à selectionné (selon la variable videoSelected)*/}
         <MainPanelView showSearchForm={showSearchForm} videoSelected={videoSelected} />
       </div>

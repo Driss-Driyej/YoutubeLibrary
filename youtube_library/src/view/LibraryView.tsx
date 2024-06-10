@@ -10,55 +10,17 @@ interface Video {
 
 interface LibraryViewProps {
   username: string;
-  displayFormOnClick: (event: React.FormEvent<HTMLButtonElement>) => void; // Type de la fonction displayFormOnClick donnée en argument
-  libraryItemOnClick: (event: React.FormEvent<HTMLButtonElement>, video: Video) => void; // Type de la fonction libraryItemOnClick donnée en argument
-}
-
-interface LibraryViewState {
   userVideos: Video[];
   isLoading: boolean;
+  displayFormOnClick: (event: React.FormEvent<HTMLButtonElement>) => void; // Type de la fonction displayFormOnClick donnée en argument
+  libraryItemOnClick: (event: React.FormEvent<HTMLButtonElement>, video: Video) => void; // Type de la fonction libraryItemOnClick donnée en argument
+  onDeleteVideo: (videoId: string) => void; // Type de la fonction de suppression de vidéo
 }
 
 // Composant qui affiche l'élément de gauche de la vue 
-class LibraryView extends React.Component<LibraryViewProps, LibraryViewState> {
-  constructor(props: LibraryViewProps) {
-    super(props);
-    this.state = { userVideos: [], isLoading: false };
-
-    this.handleVideoDelete = this.handleVideoDelete.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchUserVideos();
-  }
-
-  async fetchUserVideos() {
-    const { username } = this.props;
-    const response = await fetch(`http://localhost:3001/api/user/${username}/videos`);
-    if (response.ok) {
-      const userVideos = await response.json();
-      this.setState({ userVideos });
-    }
-  }
-
-  async handleVideoDelete(videoId: string) {
-    const { username } = this.props;
-    this.setState({ isLoading: true });
-
-    const response = await fetch(`http://localhost:3001/api/library/${username}/videos/${videoId}`, {
-      method: 'DELETE',
-    });
-
-    if (response.ok) {
-      await this.fetchUserVideos(); // Rafraîchir la liste des vidéos après la suppression
-    }
-
-    this.setState({ isLoading: false });
-  }
-
+class LibraryView extends React.Component<LibraryViewProps> {
   render() {
-    const { username, displayFormOnClick, libraryItemOnClick } = this.props;
-    const { userVideos, isLoading } = this.state;
+    const { username, userVideos, isLoading, displayFormOnClick, libraryItemOnClick, onDeleteVideo } = this.props;
 
     return (
       <div className="library-container">
@@ -75,7 +37,7 @@ class LibraryView extends React.Component<LibraryViewProps, LibraryViewState> {
                 <MyVideoView 
                   libraryItemOnClick={libraryItemOnClick} 
                   video={video} 
-                  onDelete={() => this.handleVideoDelete(video.id)} 
+                  onDelete={() => onDeleteVideo(video.id)} 
                 />
               </li>
             ))}

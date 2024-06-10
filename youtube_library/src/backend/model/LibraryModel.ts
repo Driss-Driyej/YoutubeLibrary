@@ -12,23 +12,25 @@ interface UserLibrary {
 }
 
 class LibraryModel {
+  // Méthode pour obtenir le chemin du fichier JSON de la bibliothèque d'un utilisateur
   private static getLibraryPath(userName: string): string {
     return path.join(__dirname, '../data', `${userName}.lib.json`);
   }
 
+  // Méthode pour lire le fichier JSON de la bibliothèque d'un utilisateur et le convertir en objet UserLibrary
   private static async readLibrary(userName: string): Promise<UserLibrary> {
     const libraryPath = LibraryModel.getLibraryPath(userName);
     const data = await fs.readFile(libraryPath, 'utf-8');
     return JSON.parse(data) as UserLibrary;
   }
 
+  // Méthode pour écrire l'objet UserLibrary dans le fichier JSON de la bibliothèque d'un utilisateur
   private static async writeLibrary(userName: string, library: UserLibrary): Promise<void> {
     const libraryPath = LibraryModel.getLibraryPath(userName);
     await fs.writeFile(libraryPath, JSON.stringify(library, null, 2), 'utf-8');
-    // Ajout d'un délai pour s'assurer que les données sont bien enregistrées
-    await new Promise(resolve => setTimeout(resolve, 75));
   }
 
+  // Méthode pour ajouter une vidéo à la bibliothèque d'un utilisateur
   public static async addVideo(userName: string, video: Video): Promise<void> {
     const library = await LibraryModel.readLibrary(userName);
     library.videos.push(video);
@@ -36,6 +38,7 @@ class LibraryModel {
     console.log(`Video with ID: ${video.id} added to the library of user: ${library.name}`);
   }
 
+  // Méthode pour supprimer une vidéo de la bibliothèque d'un utilisateur
   public static async removeVideo(userName: string, videoId: string): Promise<void> {
     const library = await LibraryModel.readLibrary(userName);
     const videoIndex = library.videos.findIndex(video => video.id === videoId);

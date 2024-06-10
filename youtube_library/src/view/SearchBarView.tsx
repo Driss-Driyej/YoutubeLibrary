@@ -1,6 +1,5 @@
 import React from 'react';
-import '../css/searchBar.css';
-
+import '../css/mainPanel.css';
 // Type du nom et des vidéos de l'utilisateur
 interface SearchBarViewProps {
     value: string;

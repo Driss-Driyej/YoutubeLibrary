@@ -1,6 +1,6 @@
 import React from 'react';
 import YoutubeApiModel from '../model/YoutubeApiModel';
-import '../css/videoPlayback.css';
+import '../css/mainPanel.css';
 
 interface VideoPlaybackViewProps {
   videoId: string; // type de l'id de la video à visionner

@@ -7,12 +7,12 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware pour configurer CORS
 app.use((req: Request, res: Response, next: NextFunction) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // Remplacez par l'origine de votre client
   res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   // Répondre aux requêtes OPTIONS rapidement
   if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
+    return res.send('');
   }
   next();
 });
@@ -20,36 +20,45 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use(express.json());
 
 // Route pour obtenir les vidéos d'un utilisateur
-app.get('/api/user/:userName/videos', async (req: Request, res: Response) => {
+app.get('/api/user/:userName/videos', (req: Request, res: Response) => {
   const { userName } = req.params;
   const userVideos = UserModel.getUserVideos({ username: userName });
   res.json(userVideos);
 });
 
 // Route pour ajouter une vidéo à la bibliothèque d'un utilisateur
-app.post('/api/library/:userName/videos', async (req: Request, res: Response) => {
+app.post('/api/library/:userName/videos', (req: Request, res: Response) => {
   const { userName } = req.params;
   const { title, id }: { title: string; id: string } = req.body;
-  await LibraryModel.addVideo(userName, { title, id });
-  res.status(201).json({ message: 'Video added successfully' });
+  try {
+    LibraryModel.addVideo(userName, { title, id });
+    res.json({ message: 'Video added successfully' });
+  } catch (error) {
+    const err = error as Error;
+    res.json({ message: `Error adding video for user ${userName}`, error: err.message });
+  }
 });
 
 // Route pour supprimer une vidéo de la bibliothèque d'un utilisateur
-app.delete('/api/library/:userName/videos/:videoId', async (req: Request, res: Response) => {
+app.delete('/api/library/:userName/videos/:videoId', (req: Request, res: Response) => {
   const { userName, videoId } = req.params;
-  await LibraryModel.removeVideo(userName, videoId);
-  const userVideos = UserModel.getUserVideos({ username: userName });
-  res.status(200).json(userVideos);
+  try {
+    LibraryModel.removeVideo(userName, videoId);
+    res.json({ message: 'Video deleted successfully' });
+  } catch (error) {
+    const err = error as Error;
+    res.json({ message: `Error removing video for user ${userName}`, error: err.message });
+  }
 });
 
 // Middleware pour gérer les routes non trouvées
 app.use((req: Request, res: Response) => {
-  res.status(404).json({ message: 'Not Found' });
+  res.json({ message: 'Not Found' });
 });
 
 // Middleware pour gérer les erreurs
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  res.status(500).json({ message: 'Internal Server Error' });
+  res.json({ message: 'Internal Server Error' });
 });
 
 app.listen(PORT, () => {

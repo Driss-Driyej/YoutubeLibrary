@@ -1,33 +1,51 @@
+/* Conteneur principal de la bibliothèque */
 .library-container {
   width: 30%;
   background-color: dimgray;
   padding: 15px;
   margin: 30px 10px;
-  align-items: center;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
   border-radius: 50px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* En-tête de la bibliothèque */
 .library-header {
   font-size: 1.8em;
   margin-bottom: 20px;
 }
 
+/* Bouton pour afficher le formulaire */
 .display-form {
   margin-bottom: 20px;
-  padding: 10px 210px;
+  padding: 10px 0;
+  width: 100%;
+  max-width: 400px;
   font-size: 1.2em;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: lightgray;
+  border-radius: 10px;
+  transition: background-color 0.3s;
 }
 
+.display-form:hover {
+  background-color: gray;
+}
+
+/* Conteneur de la vue de la bibliothèque */
 .library-view-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+/* Élément de la vue de la bibliothèque */
 .library-view-item {
   background-color: white;
   padding: 20px;
@@ -35,45 +53,56 @@
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-size: 1.2em;
+  transition: background-color 0.3s;
 }
 
+.library-view-item:hover {
+  background-color: lightgray;
+}
+
+/* Liste des éléments de la bibliothèque */
 .library-item {
   list-style-type: none;
   margin-top: 20px;
 }
 
+/* Conteneur de la vidéo */
 .my-video-container {
   display: flex;
   align-items: center;
 }
 
-.my-video-container {
-  display: flex;
-}
-
+/* Boutons de suppression et de sélection de la vidéo */
 .my-video-button-supp, .my-video-button {
   border: none;
   cursor: pointer;
   outline: none;
+  text-align: center;
+  transition: background-color 0.3s;
 }
 
+/* Bouton de suppression de la vidéo */
 .my-video-button-supp {
   width: 30px;
   height: 80px;
   padding: 30px 10px;
   box-sizing: border-box;
-  text-align: center;
 }
 
+.my-video-button-supp:hover {
+  background-color: lightgray;
+}
+
+/* Bouton de sélection de la vidéo */
 .my-video-button {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   height: 80px;
   padding: 30px 10px;
   box-sizing: border-box;
-  text-align: center;
   line-height: 1;
 }
 
-.my-video-button-supp:hover, .my-video-button:hover {
+.my-video-button:hover {
   background-color: lightgray;
 }

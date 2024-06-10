@@ -2,60 +2,91 @@ import React from 'react';
 import LibraryView from './view/LibraryView';
 import MainPanelView from './view/MainPanelView';
 import './css/App.css';
+import AppController from './controller/AppController';
 
-// types des éléments du tableau vidéos selectionné (videoSelected)
-interface video {
+// Types des éléments du tableau vidéos sélectionné (videoSelected)
+interface Video {
   title: string;
   id: string;
 }
 
-// type du nom de l'utilisateur
+// Type du nom de l'utilisateur
 interface AppProps {
   username: string;
 }
 
-// types des variables d'état
+// Types des variables d'état
 interface AppState {
   showSearchForm: boolean;
-  videoSelected: video | null;
+  videoSelected: Video | null;
+  userVideos: Video[];
+  isLoading: boolean;
 }
 
 class App extends React.Component<AppProps, AppState> {
+  controller: AppController;
+
   constructor(props: AppProps) {
     super(props);
-    // L'etat de showSearchForm permet de savoir si on affiche le formulaire de recherche, si il est sur false on affiche la vidéo selectionné (videoSelected).
-    this.state = { showSearchForm: true, videoSelected: null};
-    
+    this.state = { 
+      showSearchForm: true, 
+      videoSelected: null,
+      userVideos: [],
+      isLoading: false
+    };
+
+    this.controller = new AppController(
+      props.username,
+      this.setLoading.bind(this),
+      this.setUserVideos.bind(this)
+    );
+
     this.displaySearchForm = this.displaySearchForm.bind(this);
     this.displayVideo = this.displayVideo.bind(this);
   }
 
-  // Affiche le formulaire de recherche. Appelée lorque l'utilisateur clique sur le bouton d'affichage du formulaire de recherche ([+]).
+  componentDidMount() {
+    this.controller.fetchUserVideos();
+  }
+
+  setLoading(isLoading: boolean) {
+    this.setState({ isLoading });
+  }
+
+  setUserVideos(userVideos: Video[]) {
+    this.setState({ userVideos });
+  }
+
   displaySearchForm(event: React.FormEvent<HTMLButtonElement>) {
     this.setState({ showSearchForm: true, videoSelected: null });
   }
 
-  // Affiche la vidéo que l'utilisateur a séléctionné dans sa librairie. Appelé lorsque l'utilisateur clique sur une des vidéo qu'il a dans sa librairie
-  displayVideo(event: React.FormEvent<HTMLButtonElement>, video: video) {
+  displayVideo(event: React.FormEvent<HTMLButtonElement>, video: Video) {
     this.setState({ showSearchForm: false, videoSelected: video });
   }
 
   render() {
-    const { showSearchForm, videoSelected } = this.state;
+    const { showSearchForm, videoSelected, userVideos, isLoading } = this.state;
     const { username } = this.props;
 
     return (
       <div className="app-container">
-        {/*Composant gauche de l'application. Il affiche : le nom de la librairie, le bouton d'affichage du formulaire, et les vidéos que l'utilisateur a dans sa librairie*/}
-        <LibraryView username={username} displayFormOnClick={this.displaySearchForm} libraryItemOnClick={this.displayVideo}/>
-        {/*Composant droit  de l'application. Il affiche (selon la valeur de la variable showSearchForm) : le formulaire de recherche ou la vidéo que l'utilisateur à selectionné (selon la variable videoSelected)*/}
-        <MainPanelView showSearchForm={showSearchForm} videoSelected={videoSelected} />
+        <LibraryView 
+          username={username} 
+          userVideos={userVideos}
+          isLoading={isLoading}
+          displayFormOnClick={this.displaySearchForm} 
+          libraryItemOnClick={this.displayVideo} 
+          onDeleteVideo={this.controller.handleVideoDelete.bind(this.controller)} 
+        />
+        <MainPanelView 
+          showSearchForm={showSearchForm} 
+          videoSelected={videoSelected} 
+          onAddVideo={this.controller.handleVideoAdd.bind(this.controller)}
+        />
       </div>
     );
   }
 }
 
 export default App;
-
-/*1 - Gère l'évènement de la barre de recherche et des boutons supprimer et ajouter un video*/
-/*2 - Bibliothèsque de vidéo(en gros si j'enlève une vidéo de la bd de l'utilisateur, pas besoins de rafraîchir pour qu'elle n'apparaisse plus ).*/

@@ -1,13 +1,16 @@
+/* Conteneur principal du panneau */
 .main-panel-container {
   width: 70%;
   background-color: whitesmoke;
-  padding: 80px; 
+  padding: 80px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
 
-.main-panel-search-view {
+/* Vue de recherche du panneau principal */
+.main-panel-search-view,
+.main-panel-video {
   background-color: white;
   flex-grow: 1;
   border-radius: 100px;
@@ -16,13 +19,124 @@
 }
 
 .main-panel-video {
-  background-color: white;
-  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 100px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
   font-size: 1.5em;
+}
+
+/* Formulaire de la barre de recherche */
+.search-bar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-bar-form .form-group {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar-form label {
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.search-bar-form input[type="text"],
+.search-bar-form input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Bouton invisible */
+.invisible-button {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Conteneur du formulaire de recherche */
+.search-form-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.search-form-title {
+  font-size: 24px;
+  color: #333;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* Résultats de recherche */
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.result-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.result-item img {
+  max-width: 100px;
+  border-radius: 4px;
+}
+
+.result-item h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  flex-grow: 1;
+}
+
+.result-item button {
+  padding: 5px 10px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  background-color: white;
+  color: #007bff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.result-item button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Iframe vidéo */
+#video-iframe {
+  width: 900px;
+  height: 506px;
+  border: 0;
+  border-radius: 10px;
+}
+
+/* Titre de la vidéo */
+.video-title {
+  font-size: 24px;
+  margin-bottom: 15px;
 }
